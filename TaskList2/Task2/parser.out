@@ -1,0 +1,87 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> COMMENT
+Rule 2     expression -> SMTHELSE
+Rule 3     expression -> expression expression
+
+Terminals, with rules where they appear
+
+COMMENT              : 1
+SMTHELSE             : 2
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 3 3 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . COMMENT
+    (2) expression -> . SMTHELSE
+    (3) expression -> . expression expression
+
+    COMMENT         shift and go to state 2
+    SMTHELSE        shift and go to state 3
+
+    expression                     shift and go to state 1
+
+state 1
+
+    (0) S' -> expression .
+    (3) expression -> expression . expression
+    (1) expression -> . COMMENT
+    (2) expression -> . SMTHELSE
+    (3) expression -> . expression expression
+
+    COMMENT         shift and go to state 2
+    SMTHELSE        shift and go to state 3
+
+    expression                     shift and go to state 4
+
+state 2
+
+    (1) expression -> COMMENT .
+
+    COMMENT         reduce using rule 1 (expression -> COMMENT .)
+    SMTHELSE        reduce using rule 1 (expression -> COMMENT .)
+    $end            reduce using rule 1 (expression -> COMMENT .)
+
+
+state 3
+
+    (2) expression -> SMTHELSE .
+
+    COMMENT         reduce using rule 2 (expression -> SMTHELSE .)
+    SMTHELSE        reduce using rule 2 (expression -> SMTHELSE .)
+    $end            reduce using rule 2 (expression -> SMTHELSE .)
+
+
+state 4
+
+    (3) expression -> expression expression .
+    (3) expression -> expression . expression
+    (1) expression -> . COMMENT
+    (2) expression -> . SMTHELSE
+    (3) expression -> . expression expression
+
+  ! shift/reduce conflict for COMMENT resolved as shift
+  ! shift/reduce conflict for SMTHELSE resolved as shift
+    $end            reduce using rule 3 (expression -> expression expression .)
+    COMMENT         shift and go to state 2
+    SMTHELSE        shift and go to state 3
+
+  ! COMMENT         [ reduce using rule 3 (expression -> expression expression .) ]
+  ! SMTHELSE        [ reduce using rule 3 (expression -> expression expression .) ]
+
+    expression                     shift and go to state 4
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for COMMENT in state 4 resolved as shift
+WARNING: shift/reduce conflict for SMTHELSE in state 4 resolved as shift

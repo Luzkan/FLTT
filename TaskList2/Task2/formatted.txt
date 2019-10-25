@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+
+<class_list>
+   <student>
+      <name>Tanmay</name>
+      <grade>A</grade>
+   </student>
+</class_list>
+
+<detail>
+    <band height="20">
+    
+    </band>
+</detail>

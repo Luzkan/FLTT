@@ -1,0 +1,395 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> calc
+Rule 1     calc -> expression
+Rule 2     calc -> var_assign
+Rule 3     calc -> empty
+Rule 4     var_assign -> NAME expression EQUALS
+Rule 5     var_assign -> NAME NAME EQUALS
+Rule 6     expression -> expression expression POWER
+Rule 7     expression -> expression expression MODULO
+Rule 8     expression -> expression expression MULTIPLY
+Rule 9     expression -> expression expression DIVIDE
+Rule 10    expression -> expression expression PLUS
+Rule 11    expression -> expression expression MINUS
+Rule 12    expression -> INT
+Rule 13    expression -> FLOAT
+Rule 14    expression -> NAME
+Rule 15    empty -> <empty>
+
+Terminals, with rules where they appear
+
+DIVIDE               : 9
+EQUALS               : 4 5
+FLOAT                : 13
+INT                  : 12
+MINUS                : 11
+MODULO               : 7
+MULTIPLY             : 8
+NAME                 : 4 5 5 14
+PLUS                 : 10
+POWER                : 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+calc                 : 0
+empty                : 3
+expression           : 1 4 6 6 7 7 8 8 9 9 10 10 11 11
+var_assign           : 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . calc
+    (1) calc -> . expression
+    (2) calc -> . var_assign
+    (3) calc -> . empty
+    (6) expression -> . expression expression POWER
+    (7) expression -> . expression expression MODULO
+    (8) expression -> . expression expression MULTIPLY
+    (9) expression -> . expression expression DIVIDE
+    (10) expression -> . expression expression PLUS
+    (11) expression -> . expression expression MINUS
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . NAME
+    (4) var_assign -> . NAME expression EQUALS
+    (5) var_assign -> . NAME NAME EQUALS
+    (15) empty -> .
+
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    NAME            shift and go to state 7
+    $end            reduce using rule 15 (empty -> .)
+
+    calc                           shift and go to state 1
+    expression                     shift and go to state 2
+    var_assign                     shift and go to state 3
+    empty                          shift and go to state 4
+
+state 1
+
+    (0) S' -> calc .
+
+
+
+state 2
+
+    (1) calc -> expression .
+    (6) expression -> expression . expression POWER
+    (7) expression -> expression . expression MODULO
+    (8) expression -> expression . expression MULTIPLY
+    (9) expression -> expression . expression DIVIDE
+    (10) expression -> expression . expression PLUS
+    (11) expression -> expression . expression MINUS
+    (6) expression -> . expression expression POWER
+    (7) expression -> . expression expression MODULO
+    (8) expression -> . expression expression MULTIPLY
+    (9) expression -> . expression expression DIVIDE
+    (10) expression -> . expression expression PLUS
+    (11) expression -> . expression expression MINUS
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . NAME
+
+    $end            reduce using rule 1 (calc -> expression .)
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    NAME            shift and go to state 9
+
+    expression                     shift and go to state 8
+
+state 3
+
+    (2) calc -> var_assign .
+
+    $end            reduce using rule 2 (calc -> var_assign .)
+
+
+state 4
+
+    (3) calc -> empty .
+
+    $end            reduce using rule 3 (calc -> empty .)
+
+
+state 5
+
+    (12) expression -> INT .
+
+    INT             reduce using rule 12 (expression -> INT .)
+    FLOAT           reduce using rule 12 (expression -> INT .)
+    NAME            reduce using rule 12 (expression -> INT .)
+    $end            reduce using rule 12 (expression -> INT .)
+    POWER           reduce using rule 12 (expression -> INT .)
+    MODULO          reduce using rule 12 (expression -> INT .)
+    MULTIPLY        reduce using rule 12 (expression -> INT .)
+    DIVIDE          reduce using rule 12 (expression -> INT .)
+    PLUS            reduce using rule 12 (expression -> INT .)
+    MINUS           reduce using rule 12 (expression -> INT .)
+    EQUALS          reduce using rule 12 (expression -> INT .)
+
+
+state 6
+
+    (13) expression -> FLOAT .
+
+    INT             reduce using rule 13 (expression -> FLOAT .)
+    FLOAT           reduce using rule 13 (expression -> FLOAT .)
+    NAME            reduce using rule 13 (expression -> FLOAT .)
+    $end            reduce using rule 13 (expression -> FLOAT .)
+    POWER           reduce using rule 13 (expression -> FLOAT .)
+    MODULO          reduce using rule 13 (expression -> FLOAT .)
+    MULTIPLY        reduce using rule 13 (expression -> FLOAT .)
+    DIVIDE          reduce using rule 13 (expression -> FLOAT .)
+    PLUS            reduce using rule 13 (expression -> FLOAT .)
+    MINUS           reduce using rule 13 (expression -> FLOAT .)
+    EQUALS          reduce using rule 13 (expression -> FLOAT .)
+
+
+state 7
+
+    (14) expression -> NAME .
+    (4) var_assign -> NAME . expression EQUALS
+    (5) var_assign -> NAME . NAME EQUALS
+    (6) expression -> . expression expression POWER
+    (7) expression -> . expression expression MODULO
+    (8) expression -> . expression expression MULTIPLY
+    (9) expression -> . expression expression DIVIDE
+    (10) expression -> . expression expression PLUS
+    (11) expression -> . expression expression MINUS
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . NAME
+
+  ! shift/reduce conflict for NAME resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
+    $end            reduce using rule 14 (expression -> NAME .)
+    NAME            shift and go to state 10
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+
+  ! INT             [ reduce using rule 14 (expression -> NAME .) ]
+  ! FLOAT           [ reduce using rule 14 (expression -> NAME .) ]
+  ! NAME            [ reduce using rule 14 (expression -> NAME .) ]
+
+    expression                     shift and go to state 11
+
+state 8
+
+    (6) expression -> expression expression . POWER
+    (7) expression -> expression expression . MODULO
+    (8) expression -> expression expression . MULTIPLY
+    (9) expression -> expression expression . DIVIDE
+    (10) expression -> expression expression . PLUS
+    (11) expression -> expression expression . MINUS
+    (6) expression -> expression . expression POWER
+    (7) expression -> expression . expression MODULO
+    (8) expression -> expression . expression MULTIPLY
+    (9) expression -> expression . expression DIVIDE
+    (10) expression -> expression . expression PLUS
+    (11) expression -> expression . expression MINUS
+    (6) expression -> . expression expression POWER
+    (7) expression -> . expression expression MODULO
+    (8) expression -> . expression expression MULTIPLY
+    (9) expression -> . expression expression DIVIDE
+    (10) expression -> . expression expression PLUS
+    (11) expression -> . expression expression MINUS
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . NAME
+
+    POWER           shift and go to state 12
+    MODULO          shift and go to state 13
+    MULTIPLY        shift and go to state 14
+    DIVIDE          shift and go to state 15
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    NAME            shift and go to state 9
+
+    expression                     shift and go to state 8
+
+state 9
+
+    (14) expression -> NAME .
+
+    POWER           reduce using rule 14 (expression -> NAME .)
+    MODULO          reduce using rule 14 (expression -> NAME .)
+    MULTIPLY        reduce using rule 14 (expression -> NAME .)
+    DIVIDE          reduce using rule 14 (expression -> NAME .)
+    PLUS            reduce using rule 14 (expression -> NAME .)
+    MINUS           reduce using rule 14 (expression -> NAME .)
+    INT             reduce using rule 14 (expression -> NAME .)
+    FLOAT           reduce using rule 14 (expression -> NAME .)
+    NAME            reduce using rule 14 (expression -> NAME .)
+
+
+state 10
+
+    (5) var_assign -> NAME NAME . EQUALS
+    (14) expression -> NAME .
+
+  ! shift/reduce conflict for EQUALS resolved as shift
+    EQUALS          shift and go to state 18
+    INT             reduce using rule 14 (expression -> NAME .)
+    FLOAT           reduce using rule 14 (expression -> NAME .)
+    NAME            reduce using rule 14 (expression -> NAME .)
+
+  ! EQUALS          [ reduce using rule 14 (expression -> NAME .) ]
+
+
+state 11
+
+    (4) var_assign -> NAME expression . EQUALS
+    (6) expression -> expression . expression POWER
+    (7) expression -> expression . expression MODULO
+    (8) expression -> expression . expression MULTIPLY
+    (9) expression -> expression . expression DIVIDE
+    (10) expression -> expression . expression PLUS
+    (11) expression -> expression . expression MINUS
+    (6) expression -> . expression expression POWER
+    (7) expression -> . expression expression MODULO
+    (8) expression -> . expression expression MULTIPLY
+    (9) expression -> . expression expression DIVIDE
+    (10) expression -> . expression expression PLUS
+    (11) expression -> . expression expression MINUS
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . NAME
+
+    EQUALS          shift and go to state 19
+    INT             shift and go to state 5
+    FLOAT           shift and go to state 6
+    NAME            shift and go to state 9
+
+    expression                     shift and go to state 8
+
+state 12
+
+    (6) expression -> expression expression POWER .
+
+    INT             reduce using rule 6 (expression -> expression expression POWER .)
+    FLOAT           reduce using rule 6 (expression -> expression expression POWER .)
+    NAME            reduce using rule 6 (expression -> expression expression POWER .)
+    $end            reduce using rule 6 (expression -> expression expression POWER .)
+    POWER           reduce using rule 6 (expression -> expression expression POWER .)
+    MODULO          reduce using rule 6 (expression -> expression expression POWER .)
+    MULTIPLY        reduce using rule 6 (expression -> expression expression POWER .)
+    DIVIDE          reduce using rule 6 (expression -> expression expression POWER .)
+    PLUS            reduce using rule 6 (expression -> expression expression POWER .)
+    MINUS           reduce using rule 6 (expression -> expression expression POWER .)
+    EQUALS          reduce using rule 6 (expression -> expression expression POWER .)
+
+
+state 13
+
+    (7) expression -> expression expression MODULO .
+
+    INT             reduce using rule 7 (expression -> expression expression MODULO .)
+    FLOAT           reduce using rule 7 (expression -> expression expression MODULO .)
+    NAME            reduce using rule 7 (expression -> expression expression MODULO .)
+    $end            reduce using rule 7 (expression -> expression expression MODULO .)
+    POWER           reduce using rule 7 (expression -> expression expression MODULO .)
+    MODULO          reduce using rule 7 (expression -> expression expression MODULO .)
+    MULTIPLY        reduce using rule 7 (expression -> expression expression MODULO .)
+    DIVIDE          reduce using rule 7 (expression -> expression expression MODULO .)
+    PLUS            reduce using rule 7 (expression -> expression expression MODULO .)
+    MINUS           reduce using rule 7 (expression -> expression expression MODULO .)
+    EQUALS          reduce using rule 7 (expression -> expression expression MODULO .)
+
+
+state 14
+
+    (8) expression -> expression expression MULTIPLY .
+
+    INT             reduce using rule 8 (expression -> expression expression MULTIPLY .)
+    FLOAT           reduce using rule 8 (expression -> expression expression MULTIPLY .)
+    NAME            reduce using rule 8 (expression -> expression expression MULTIPLY .)
+    $end            reduce using rule 8 (expression -> expression expression MULTIPLY .)
+    POWER           reduce using rule 8 (expression -> expression expression MULTIPLY .)
+    MODULO          reduce using rule 8 (expression -> expression expression MULTIPLY .)
+    MULTIPLY        reduce using rule 8 (expression -> expression expression MULTIPLY .)
+    DIVIDE          reduce using rule 8 (expression -> expression expression MULTIPLY .)
+    PLUS            reduce using rule 8 (expression -> expression expression MULTIPLY .)
+    MINUS           reduce using rule 8 (expression -> expression expression MULTIPLY .)
+    EQUALS          reduce using rule 8 (expression -> expression expression MULTIPLY .)
+
+
+state 15
+
+    (9) expression -> expression expression DIVIDE .
+
+    INT             reduce using rule 9 (expression -> expression expression DIVIDE .)
+    FLOAT           reduce using rule 9 (expression -> expression expression DIVIDE .)
+    NAME            reduce using rule 9 (expression -> expression expression DIVIDE .)
+    $end            reduce using rule 9 (expression -> expression expression DIVIDE .)
+    POWER           reduce using rule 9 (expression -> expression expression DIVIDE .)
+    MODULO          reduce using rule 9 (expression -> expression expression DIVIDE .)
+    MULTIPLY        reduce using rule 9 (expression -> expression expression DIVIDE .)
+    DIVIDE          reduce using rule 9 (expression -> expression expression DIVIDE .)
+    PLUS            reduce using rule 9 (expression -> expression expression DIVIDE .)
+    MINUS           reduce using rule 9 (expression -> expression expression DIVIDE .)
+    EQUALS          reduce using rule 9 (expression -> expression expression DIVIDE .)
+
+
+state 16
+
+    (10) expression -> expression expression PLUS .
+
+    INT             reduce using rule 10 (expression -> expression expression PLUS .)
+    FLOAT           reduce using rule 10 (expression -> expression expression PLUS .)
+    NAME            reduce using rule 10 (expression -> expression expression PLUS .)
+    $end            reduce using rule 10 (expression -> expression expression PLUS .)
+    POWER           reduce using rule 10 (expression -> expression expression PLUS .)
+    MODULO          reduce using rule 10 (expression -> expression expression PLUS .)
+    MULTIPLY        reduce using rule 10 (expression -> expression expression PLUS .)
+    DIVIDE          reduce using rule 10 (expression -> expression expression PLUS .)
+    PLUS            reduce using rule 10 (expression -> expression expression PLUS .)
+    MINUS           reduce using rule 10 (expression -> expression expression PLUS .)
+    EQUALS          reduce using rule 10 (expression -> expression expression PLUS .)
+
+
+state 17
+
+    (11) expression -> expression expression MINUS .
+
+    INT             reduce using rule 11 (expression -> expression expression MINUS .)
+    FLOAT           reduce using rule 11 (expression -> expression expression MINUS .)
+    NAME            reduce using rule 11 (expression -> expression expression MINUS .)
+    $end            reduce using rule 11 (expression -> expression expression MINUS .)
+    POWER           reduce using rule 11 (expression -> expression expression MINUS .)
+    MODULO          reduce using rule 11 (expression -> expression expression MINUS .)
+    MULTIPLY        reduce using rule 11 (expression -> expression expression MINUS .)
+    DIVIDE          reduce using rule 11 (expression -> expression expression MINUS .)
+    PLUS            reduce using rule 11 (expression -> expression expression MINUS .)
+    MINUS           reduce using rule 11 (expression -> expression expression MINUS .)
+    EQUALS          reduce using rule 11 (expression -> expression expression MINUS .)
+
+
+state 18
+
+    (5) var_assign -> NAME NAME EQUALS .
+
+    $end            reduce using rule 5 (var_assign -> NAME NAME EQUALS .)
+
+
+state 19
+
+    (4) var_assign -> NAME expression EQUALS .
+
+    $end            reduce using rule 4 (var_assign -> NAME expression EQUALS .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for NAME in state 7 resolved as shift
+WARNING: shift/reduce conflict for INT in state 7 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 7 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 10 resolved as shift

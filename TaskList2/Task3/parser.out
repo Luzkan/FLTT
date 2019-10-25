@@ -1,0 +1,110 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> DOC
+Rule 2     expression -> ALLCOMMENTS
+Rule 3     expression -> SMTHELSE
+Rule 4     expression -> expression expression
+
+Terminals, with rules where they appear
+
+ALLCOMMENTS          : 2
+DOC                  : 1
+SMTHELSE             : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 4 4 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . DOC
+    (2) expression -> . ALLCOMMENTS
+    (3) expression -> . SMTHELSE
+    (4) expression -> . expression expression
+
+    DOC             shift and go to state 2
+    ALLCOMMENTS     shift and go to state 3
+    SMTHELSE        shift and go to state 4
+
+    expression                     shift and go to state 1
+
+state 1
+
+    (0) S' -> expression .
+    (4) expression -> expression . expression
+    (1) expression -> . DOC
+    (2) expression -> . ALLCOMMENTS
+    (3) expression -> . SMTHELSE
+    (4) expression -> . expression expression
+
+    DOC             shift and go to state 2
+    ALLCOMMENTS     shift and go to state 3
+    SMTHELSE        shift and go to state 4
+
+    expression                     shift and go to state 5
+
+state 2
+
+    (1) expression -> DOC .
+
+    DOC             reduce using rule 1 (expression -> DOC .)
+    ALLCOMMENTS     reduce using rule 1 (expression -> DOC .)
+    SMTHELSE        reduce using rule 1 (expression -> DOC .)
+    $end            reduce using rule 1 (expression -> DOC .)
+
+
+state 3
+
+    (2) expression -> ALLCOMMENTS .
+
+    DOC             reduce using rule 2 (expression -> ALLCOMMENTS .)
+    ALLCOMMENTS     reduce using rule 2 (expression -> ALLCOMMENTS .)
+    SMTHELSE        reduce using rule 2 (expression -> ALLCOMMENTS .)
+    $end            reduce using rule 2 (expression -> ALLCOMMENTS .)
+
+
+state 4
+
+    (3) expression -> SMTHELSE .
+
+    DOC             reduce using rule 3 (expression -> SMTHELSE .)
+    ALLCOMMENTS     reduce using rule 3 (expression -> SMTHELSE .)
+    SMTHELSE        reduce using rule 3 (expression -> SMTHELSE .)
+    $end            reduce using rule 3 (expression -> SMTHELSE .)
+
+
+state 5
+
+    (4) expression -> expression expression .
+    (4) expression -> expression . expression
+    (1) expression -> . DOC
+    (2) expression -> . ALLCOMMENTS
+    (3) expression -> . SMTHELSE
+    (4) expression -> . expression expression
+
+  ! shift/reduce conflict for DOC resolved as shift
+  ! shift/reduce conflict for ALLCOMMENTS resolved as shift
+  ! shift/reduce conflict for SMTHELSE resolved as shift
+    $end            reduce using rule 4 (expression -> expression expression .)
+    DOC             shift and go to state 2
+    ALLCOMMENTS     shift and go to state 3
+    SMTHELSE        shift and go to state 4
+
+  ! DOC             [ reduce using rule 4 (expression -> expression expression .) ]
+  ! ALLCOMMENTS     [ reduce using rule 4 (expression -> expression expression .) ]
+  ! SMTHELSE        [ reduce using rule 4 (expression -> expression expression .) ]
+
+    expression                     shift and go to state 5
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for DOC in state 5 resolved as shift
+WARNING: shift/reduce conflict for ALLCOMMENTS in state 5 resolved as shift
+WARNING: shift/reduce conflict for SMTHELSE in state 5 resolved as shift

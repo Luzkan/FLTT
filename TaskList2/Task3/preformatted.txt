@@ -1,0 +1,101 @@
+/////////////////////////////////////////////////
+/// ... text ...
+/////////////////////////////////////////////////
+
+Code
+
+///
+/// ... text ...
+///
+
+Code
+
+//!
+//! ... text ...
+//!
+
+Code
+
+/*!
+ * ... text ...
+ */
+
+Code
+
+/*!
+ ... text ...
+*/
+
+Code
+
+/*void EventLoop(); /**/
+
+Code
+
+/*
+void EventLoop();
+void EventLoop();
+/**/
+
+Code
+
+void EventLoop();
+void EventLoop();
+/**/
+
+void EventLoop(); /**/
+
+Code
+
+int function() /* This is a comment */
+{              
+ return 0;  
+}              and this is the same comment */
+               so this isn't in the comment, and will give an error*/
+
+
+Code
+
+
+// This is a single one line comment
+
+Code
+
+if (expression) // This needs a comment
+{
+  statements;   
+}
+else
+{
+  statements;
+}
+
+Code
+
+// This comment will also comment the following line \
+std::cout << "This line will not print" << std::endl;
+
+Code
+
+/* This is a single line comment */
+
+Code
+
+
+/*
+   This is a multiple line comment
+*/
+
+Code
+
+
+/*
+void EventLoop();
+void EventLoop();
+void EventLoop();
+void EventLoop();
+void EventLoop();
+//*/
+
+
+Code
