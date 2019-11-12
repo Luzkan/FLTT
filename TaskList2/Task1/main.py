@@ -68,7 +68,7 @@ def p_error(p):
 parser = yacc.yacc()
 
 # Opens a file
-f = open(".\\Task1\\preformatted.txt","r", encoding="utf8")
+f = open(".\\Task1\\a.txt","r", encoding="utf8")
 if f.mode == 'r':
 	contents = f.read()
 
@@ -83,7 +83,7 @@ while True:
    break
 
 # Write effects to new file
-g = open(".\\Task1\\formatted.txt","w+")
+g = open(".\\Task1\\ares.txt","w+")
 g.write(result)
 g.write("\n\nWords: %s" % charsNum)
 g.write("\nLines: %s" % newlinesNum)

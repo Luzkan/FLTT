@@ -3,85 +3,160 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Grammar
 
 Rule 0     S' -> expression
-Rule 1     expression -> COMMENT
-Rule 2     expression -> SMTHELSE
-Rule 3     expression -> expression expression
+Rule 1     expression -> TAG
+Rule 2     expression -> WRONGCOMMENT
+Rule 3     expression -> NAMEEXP
+Rule 4     expression -> COMMENT
+Rule 5     expression -> SMTHELSE
+Rule 6     expression -> expression expression
 
 Terminals, with rules where they appear
 
-COMMENT              : 1
-SMTHELSE             : 2
+COMMENT              : 4
+NAMEEXP              : 3
+SMTHELSE             : 5
+TAG                  : 1
+WRONGCOMMENT         : 2
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 3 3 0
+expression           : 6 6 0
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . expression
-    (1) expression -> . COMMENT
-    (2) expression -> . SMTHELSE
-    (3) expression -> . expression expression
+    (1) expression -> . TAG
+    (2) expression -> . WRONGCOMMENT
+    (3) expression -> . NAMEEXP
+    (4) expression -> . COMMENT
+    (5) expression -> . SMTHELSE
+    (6) expression -> . expression expression
 
-    COMMENT         shift and go to state 2
-    SMTHELSE        shift and go to state 3
+    TAG             shift and go to state 2
+    WRONGCOMMENT    shift and go to state 3
+    NAMEEXP         shift and go to state 4
+    COMMENT         shift and go to state 5
+    SMTHELSE        shift and go to state 6
 
     expression                     shift and go to state 1
 
 state 1
 
     (0) S' -> expression .
-    (3) expression -> expression . expression
-    (1) expression -> . COMMENT
-    (2) expression -> . SMTHELSE
-    (3) expression -> . expression expression
+    (6) expression -> expression . expression
+    (1) expression -> . TAG
+    (2) expression -> . WRONGCOMMENT
+    (3) expression -> . NAMEEXP
+    (4) expression -> . COMMENT
+    (5) expression -> . SMTHELSE
+    (6) expression -> . expression expression
 
-    COMMENT         shift and go to state 2
-    SMTHELSE        shift and go to state 3
+    TAG             shift and go to state 2
+    WRONGCOMMENT    shift and go to state 3
+    NAMEEXP         shift and go to state 4
+    COMMENT         shift and go to state 5
+    SMTHELSE        shift and go to state 6
 
-    expression                     shift and go to state 4
+    expression                     shift and go to state 7
 
 state 2
 
-    (1) expression -> COMMENT .
+    (1) expression -> TAG .
 
-    COMMENT         reduce using rule 1 (expression -> COMMENT .)
-    SMTHELSE        reduce using rule 1 (expression -> COMMENT .)
-    $end            reduce using rule 1 (expression -> COMMENT .)
+    TAG             reduce using rule 1 (expression -> TAG .)
+    WRONGCOMMENT    reduce using rule 1 (expression -> TAG .)
+    NAMEEXP         reduce using rule 1 (expression -> TAG .)
+    COMMENT         reduce using rule 1 (expression -> TAG .)
+    SMTHELSE        reduce using rule 1 (expression -> TAG .)
+    $end            reduce using rule 1 (expression -> TAG .)
 
 
 state 3
 
-    (2) expression -> SMTHELSE .
+    (2) expression -> WRONGCOMMENT .
 
-    COMMENT         reduce using rule 2 (expression -> SMTHELSE .)
-    SMTHELSE        reduce using rule 2 (expression -> SMTHELSE .)
-    $end            reduce using rule 2 (expression -> SMTHELSE .)
+    TAG             reduce using rule 2 (expression -> WRONGCOMMENT .)
+    WRONGCOMMENT    reduce using rule 2 (expression -> WRONGCOMMENT .)
+    NAMEEXP         reduce using rule 2 (expression -> WRONGCOMMENT .)
+    COMMENT         reduce using rule 2 (expression -> WRONGCOMMENT .)
+    SMTHELSE        reduce using rule 2 (expression -> WRONGCOMMENT .)
+    $end            reduce using rule 2 (expression -> WRONGCOMMENT .)
 
 
 state 4
 
-    (3) expression -> expression expression .
-    (3) expression -> expression . expression
-    (1) expression -> . COMMENT
-    (2) expression -> . SMTHELSE
-    (3) expression -> . expression expression
+    (3) expression -> NAMEEXP .
 
+    TAG             reduce using rule 3 (expression -> NAMEEXP .)
+    WRONGCOMMENT    reduce using rule 3 (expression -> NAMEEXP .)
+    NAMEEXP         reduce using rule 3 (expression -> NAMEEXP .)
+    COMMENT         reduce using rule 3 (expression -> NAMEEXP .)
+    SMTHELSE        reduce using rule 3 (expression -> NAMEEXP .)
+    $end            reduce using rule 3 (expression -> NAMEEXP .)
+
+
+state 5
+
+    (4) expression -> COMMENT .
+
+    TAG             reduce using rule 4 (expression -> COMMENT .)
+    WRONGCOMMENT    reduce using rule 4 (expression -> COMMENT .)
+    NAMEEXP         reduce using rule 4 (expression -> COMMENT .)
+    COMMENT         reduce using rule 4 (expression -> COMMENT .)
+    SMTHELSE        reduce using rule 4 (expression -> COMMENT .)
+    $end            reduce using rule 4 (expression -> COMMENT .)
+
+
+state 6
+
+    (5) expression -> SMTHELSE .
+
+    TAG             reduce using rule 5 (expression -> SMTHELSE .)
+    WRONGCOMMENT    reduce using rule 5 (expression -> SMTHELSE .)
+    NAMEEXP         reduce using rule 5 (expression -> SMTHELSE .)
+    COMMENT         reduce using rule 5 (expression -> SMTHELSE .)
+    SMTHELSE        reduce using rule 5 (expression -> SMTHELSE .)
+    $end            reduce using rule 5 (expression -> SMTHELSE .)
+
+
+state 7
+
+    (6) expression -> expression expression .
+    (6) expression -> expression . expression
+    (1) expression -> . TAG
+    (2) expression -> . WRONGCOMMENT
+    (3) expression -> . NAMEEXP
+    (4) expression -> . COMMENT
+    (5) expression -> . SMTHELSE
+    (6) expression -> . expression expression
+
+  ! shift/reduce conflict for TAG resolved as shift
+  ! shift/reduce conflict for WRONGCOMMENT resolved as shift
+  ! shift/reduce conflict for NAMEEXP resolved as shift
   ! shift/reduce conflict for COMMENT resolved as shift
   ! shift/reduce conflict for SMTHELSE resolved as shift
-    $end            reduce using rule 3 (expression -> expression expression .)
-    COMMENT         shift and go to state 2
-    SMTHELSE        shift and go to state 3
+    $end            reduce using rule 6 (expression -> expression expression .)
+    TAG             shift and go to state 2
+    WRONGCOMMENT    shift and go to state 3
+    NAMEEXP         shift and go to state 4
+    COMMENT         shift and go to state 5
+    SMTHELSE        shift and go to state 6
 
-  ! COMMENT         [ reduce using rule 3 (expression -> expression expression .) ]
-  ! SMTHELSE        [ reduce using rule 3 (expression -> expression expression .) ]
+  ! TAG             [ reduce using rule 6 (expression -> expression expression .) ]
+  ! WRONGCOMMENT    [ reduce using rule 6 (expression -> expression expression .) ]
+  ! NAMEEXP         [ reduce using rule 6 (expression -> expression expression .) ]
+  ! COMMENT         [ reduce using rule 6 (expression -> expression expression .) ]
+  ! SMTHELSE        [ reduce using rule 6 (expression -> expression expression .) ]
 
-    expression                     shift and go to state 4
+    expression                     shift and go to state 7
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for COMMENT in state 4 resolved as shift
-WARNING: shift/reduce conflict for SMTHELSE in state 4 resolved as shift
+WARNING: shift/reduce conflict for TAG in state 7 resolved as shift
+WARNING: shift/reduce conflict for WRONGCOMMENT in state 7 resolved as shift
+WARNING: shift/reduce conflict for NAMEEXP in state 7 resolved as shift
+WARNING: shift/reduce conflict for COMMENT in state 7 resolved as shift
+WARNING: shift/reduce conflict for SMTHELSE in state 7 resolved as shift

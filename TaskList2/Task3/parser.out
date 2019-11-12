@@ -3,108 +3,189 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Grammar
 
 Rule 0     S' -> expression
-Rule 1     expression -> DOC
-Rule 2     expression -> ALLCOMMENTS
-Rule 3     expression -> SMTHELSE
-Rule 4     expression -> expression expression
+Rule 1     expression -> STRING
+Rule 2     expression -> EXP
+Rule 3     expression -> BACKSLASHTRICKS
+Rule 4     expression -> DOC
+Rule 5     expression -> ALLCOMMENTS
+Rule 6     expression -> SMTHELSE
+Rule 7     expression -> expression expression
 
 Terminals, with rules where they appear
 
-ALLCOMMENTS          : 2
-DOC                  : 1
-SMTHELSE             : 3
+ALLCOMMENTS          : 5
+BACKSLASHTRICKS      : 3
+DOC                  : 4
+EXP                  : 2
+SMTHELSE             : 6
+STRING               : 1
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 4 4 0
+expression           : 7 7 0
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . expression
-    (1) expression -> . DOC
-    (2) expression -> . ALLCOMMENTS
-    (3) expression -> . SMTHELSE
-    (4) expression -> . expression expression
+    (1) expression -> . STRING
+    (2) expression -> . EXP
+    (3) expression -> . BACKSLASHTRICKS
+    (4) expression -> . DOC
+    (5) expression -> . ALLCOMMENTS
+    (6) expression -> . SMTHELSE
+    (7) expression -> . expression expression
 
-    DOC             shift and go to state 2
-    ALLCOMMENTS     shift and go to state 3
-    SMTHELSE        shift and go to state 4
+    STRING          shift and go to state 2
+    EXP             shift and go to state 3
+    BACKSLASHTRICKS shift and go to state 4
+    DOC             shift and go to state 5
+    ALLCOMMENTS     shift and go to state 6
+    SMTHELSE        shift and go to state 7
 
     expression                     shift and go to state 1
 
 state 1
 
     (0) S' -> expression .
-    (4) expression -> expression . expression
-    (1) expression -> . DOC
-    (2) expression -> . ALLCOMMENTS
-    (3) expression -> . SMTHELSE
-    (4) expression -> . expression expression
+    (7) expression -> expression . expression
+    (1) expression -> . STRING
+    (2) expression -> . EXP
+    (3) expression -> . BACKSLASHTRICKS
+    (4) expression -> . DOC
+    (5) expression -> . ALLCOMMENTS
+    (6) expression -> . SMTHELSE
+    (7) expression -> . expression expression
 
-    DOC             shift and go to state 2
-    ALLCOMMENTS     shift and go to state 3
-    SMTHELSE        shift and go to state 4
+    STRING          shift and go to state 2
+    EXP             shift and go to state 3
+    BACKSLASHTRICKS shift and go to state 4
+    DOC             shift and go to state 5
+    ALLCOMMENTS     shift and go to state 6
+    SMTHELSE        shift and go to state 7
 
-    expression                     shift and go to state 5
+    expression                     shift and go to state 8
 
 state 2
 
-    (1) expression -> DOC .
+    (1) expression -> STRING .
 
-    DOC             reduce using rule 1 (expression -> DOC .)
-    ALLCOMMENTS     reduce using rule 1 (expression -> DOC .)
-    SMTHELSE        reduce using rule 1 (expression -> DOC .)
-    $end            reduce using rule 1 (expression -> DOC .)
+    STRING          reduce using rule 1 (expression -> STRING .)
+    EXP             reduce using rule 1 (expression -> STRING .)
+    BACKSLASHTRICKS reduce using rule 1 (expression -> STRING .)
+    DOC             reduce using rule 1 (expression -> STRING .)
+    ALLCOMMENTS     reduce using rule 1 (expression -> STRING .)
+    SMTHELSE        reduce using rule 1 (expression -> STRING .)
+    $end            reduce using rule 1 (expression -> STRING .)
 
 
 state 3
 
-    (2) expression -> ALLCOMMENTS .
+    (2) expression -> EXP .
 
-    DOC             reduce using rule 2 (expression -> ALLCOMMENTS .)
-    ALLCOMMENTS     reduce using rule 2 (expression -> ALLCOMMENTS .)
-    SMTHELSE        reduce using rule 2 (expression -> ALLCOMMENTS .)
-    $end            reduce using rule 2 (expression -> ALLCOMMENTS .)
+    STRING          reduce using rule 2 (expression -> EXP .)
+    EXP             reduce using rule 2 (expression -> EXP .)
+    BACKSLASHTRICKS reduce using rule 2 (expression -> EXP .)
+    DOC             reduce using rule 2 (expression -> EXP .)
+    ALLCOMMENTS     reduce using rule 2 (expression -> EXP .)
+    SMTHELSE        reduce using rule 2 (expression -> EXP .)
+    $end            reduce using rule 2 (expression -> EXP .)
 
 
 state 4
 
-    (3) expression -> SMTHELSE .
+    (3) expression -> BACKSLASHTRICKS .
 
-    DOC             reduce using rule 3 (expression -> SMTHELSE .)
-    ALLCOMMENTS     reduce using rule 3 (expression -> SMTHELSE .)
-    SMTHELSE        reduce using rule 3 (expression -> SMTHELSE .)
-    $end            reduce using rule 3 (expression -> SMTHELSE .)
+    STRING          reduce using rule 3 (expression -> BACKSLASHTRICKS .)
+    EXP             reduce using rule 3 (expression -> BACKSLASHTRICKS .)
+    BACKSLASHTRICKS reduce using rule 3 (expression -> BACKSLASHTRICKS .)
+    DOC             reduce using rule 3 (expression -> BACKSLASHTRICKS .)
+    ALLCOMMENTS     reduce using rule 3 (expression -> BACKSLASHTRICKS .)
+    SMTHELSE        reduce using rule 3 (expression -> BACKSLASHTRICKS .)
+    $end            reduce using rule 3 (expression -> BACKSLASHTRICKS .)
 
 
 state 5
 
-    (4) expression -> expression expression .
-    (4) expression -> expression . expression
-    (1) expression -> . DOC
-    (2) expression -> . ALLCOMMENTS
-    (3) expression -> . SMTHELSE
-    (4) expression -> . expression expression
+    (4) expression -> DOC .
 
+    STRING          reduce using rule 4 (expression -> DOC .)
+    EXP             reduce using rule 4 (expression -> DOC .)
+    BACKSLASHTRICKS reduce using rule 4 (expression -> DOC .)
+    DOC             reduce using rule 4 (expression -> DOC .)
+    ALLCOMMENTS     reduce using rule 4 (expression -> DOC .)
+    SMTHELSE        reduce using rule 4 (expression -> DOC .)
+    $end            reduce using rule 4 (expression -> DOC .)
+
+
+state 6
+
+    (5) expression -> ALLCOMMENTS .
+
+    STRING          reduce using rule 5 (expression -> ALLCOMMENTS .)
+    EXP             reduce using rule 5 (expression -> ALLCOMMENTS .)
+    BACKSLASHTRICKS reduce using rule 5 (expression -> ALLCOMMENTS .)
+    DOC             reduce using rule 5 (expression -> ALLCOMMENTS .)
+    ALLCOMMENTS     reduce using rule 5 (expression -> ALLCOMMENTS .)
+    SMTHELSE        reduce using rule 5 (expression -> ALLCOMMENTS .)
+    $end            reduce using rule 5 (expression -> ALLCOMMENTS .)
+
+
+state 7
+
+    (6) expression -> SMTHELSE .
+
+    STRING          reduce using rule 6 (expression -> SMTHELSE .)
+    EXP             reduce using rule 6 (expression -> SMTHELSE .)
+    BACKSLASHTRICKS reduce using rule 6 (expression -> SMTHELSE .)
+    DOC             reduce using rule 6 (expression -> SMTHELSE .)
+    ALLCOMMENTS     reduce using rule 6 (expression -> SMTHELSE .)
+    SMTHELSE        reduce using rule 6 (expression -> SMTHELSE .)
+    $end            reduce using rule 6 (expression -> SMTHELSE .)
+
+
+state 8
+
+    (7) expression -> expression expression .
+    (7) expression -> expression . expression
+    (1) expression -> . STRING
+    (2) expression -> . EXP
+    (3) expression -> . BACKSLASHTRICKS
+    (4) expression -> . DOC
+    (5) expression -> . ALLCOMMENTS
+    (6) expression -> . SMTHELSE
+    (7) expression -> . expression expression
+
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for EXP resolved as shift
+  ! shift/reduce conflict for BACKSLASHTRICKS resolved as shift
   ! shift/reduce conflict for DOC resolved as shift
   ! shift/reduce conflict for ALLCOMMENTS resolved as shift
   ! shift/reduce conflict for SMTHELSE resolved as shift
-    $end            reduce using rule 4 (expression -> expression expression .)
-    DOC             shift and go to state 2
-    ALLCOMMENTS     shift and go to state 3
-    SMTHELSE        shift and go to state 4
+    $end            reduce using rule 7 (expression -> expression expression .)
+    STRING          shift and go to state 2
+    EXP             shift and go to state 3
+    BACKSLASHTRICKS shift and go to state 4
+    DOC             shift and go to state 5
+    ALLCOMMENTS     shift and go to state 6
+    SMTHELSE        shift and go to state 7
 
-  ! DOC             [ reduce using rule 4 (expression -> expression expression .) ]
-  ! ALLCOMMENTS     [ reduce using rule 4 (expression -> expression expression .) ]
-  ! SMTHELSE        [ reduce using rule 4 (expression -> expression expression .) ]
+  ! STRING          [ reduce using rule 7 (expression -> expression expression .) ]
+  ! EXP             [ reduce using rule 7 (expression -> expression expression .) ]
+  ! BACKSLASHTRICKS [ reduce using rule 7 (expression -> expression expression .) ]
+  ! DOC             [ reduce using rule 7 (expression -> expression expression .) ]
+  ! ALLCOMMENTS     [ reduce using rule 7 (expression -> expression expression .) ]
+  ! SMTHELSE        [ reduce using rule 7 (expression -> expression expression .) ]
 
-    expression                     shift and go to state 5
+    expression                     shift and go to state 8
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for DOC in state 5 resolved as shift
-WARNING: shift/reduce conflict for ALLCOMMENTS in state 5 resolved as shift
-WARNING: shift/reduce conflict for SMTHELSE in state 5 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 8 resolved as shift
+WARNING: shift/reduce conflict for EXP in state 8 resolved as shift
+WARNING: shift/reduce conflict for BACKSLASHTRICKS in state 8 resolved as shift
+WARNING: shift/reduce conflict for DOC in state 8 resolved as shift
+WARNING: shift/reduce conflict for ALLCOMMENTS in state 8 resolved as shift
+WARNING: shift/reduce conflict for SMTHELSE in state 8 resolved as shift

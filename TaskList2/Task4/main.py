@@ -164,10 +164,14 @@ def run(p):
         if p[0] == '*':
             return run(p[1]) * run(p[2])
         if p[0] == '/':
+            if p[2] == 0:
+                return 'Math Error: Dividing zero'
             return run(p[1]) / run(p[2])
         if p[0] == '^':
             return run(p[1]) ** run(p[2])
         if p[0] == '%':
+            if p[2] == 0:
+                return 'Math Error: Dividing zero'
             return run(p[1]) % run(p[2])
         if p[0] == '=':
             env[p[1]] = run(p[2])
@@ -220,8 +224,26 @@ while True:
 # 2.4 3+
 # disclaimer: added float values
 
+# DO ZROBIENIA:
 
+# >> 5 5 + + 5 5 - -
+# Syntax Error: misplaced sign: +
+# Syntax Error: misplaced sign: -
+# None
 
+# >> 5 5 + + 5 5 -
+# 5 5 + + 5 5 -
+# Syntax Error: misplaced sign: +
+# 0
+
+# >> 2 0 %
+# Math Error: Dividing zero
+
+# >> 2 0 /
+# Math Error: Dividing zero
+
+# >> 0 0 /
+# Math Error: Dividing zero
 
 # lexer.input("1 2 3 4 + * -")
 # while True:

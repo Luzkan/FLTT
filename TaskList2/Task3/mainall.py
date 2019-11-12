@@ -8,7 +8,6 @@ tokens = [
     'STRING',
     'EXP',
     'ALLCOMMENTS',
-    'DOC',
     'SMTHELSE',
 ]
 
@@ -24,12 +23,6 @@ def t_EXP(t):
 def t_BACKSLASHTRICKS(t):
     r'(\/\\\n\/.*)|(\/\/.*\\\n.*)'
     t.value = '\n'
-    return t
-
-# Marcel: My god this regular expression took my way beyond the time I ever wish for :( 
-def t_DOC(t):
-    r'(\/\*((\*[^/])|\!)([^*]|[\r\n]|(\*+([^*/]|[\r\n]))|(\/\+([^*/]|[\r\n])))*\*+\/)|(\/\/(\!|\/).*)'
-    # t.value = '\n'
     return t
 
 def t_ALLCOMMENTS(t):
@@ -56,16 +49,12 @@ def p_expression_string(p):
     'expression : STRING'
     p[0] = p[1]
 
-def p_expression_exp(p):
-    'expression : EXP'
-    p[0] = p[1]
-
 def p_expression_backslashtricks(p):
     'expression : BACKSLASHTRICKS'
     p[0] = p[1]
 
-def p_expression_doc(p):
-    'expression : DOC'
+def p_expression_exp(p):
+    'expression : EXP'
     p[0] = p[1]
 
 def p_expression_allcomments(p):

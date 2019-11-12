@@ -4,11 +4,26 @@ import sys
 
 # List of token names
 tokens = [
+    'TAG',
+    'WRONGCOMMENT',
+    'NAMEEXP',
     'COMMENT',
     'SMTHELSE',
 ]
 
 # Expression for those tokens
+def t_TAG(t):
+    r'\[([\s\S\n])*?\]\n*'
+    return t
+
+def t_NAMEEXP(t):
+    r'"([\s\S\n])*?"\n*'
+    return t
+
+def t_WRONGCOMMENT(t):
+    r'<!--.*--.*-->'
+    return t
+
 def t_COMMENT(t):
     r'<!--([\s\S])*?-->\n*'
     t.value = '\n'
@@ -29,6 +44,18 @@ lexer = lex.lex()
 # --------------------------------------------------
 
 # Get the token map from the lexer
+def p_expression_tag(p):
+    'expression : TAG'
+    p[0] = p[1]
+
+def p_expression_wrongcomment(p):
+    'expression : WRONGCOMMENT'
+    p[0] = p[1]
+
+def p_expression_nameexp(p):
+    'expression : NAMEEXP'
+    p[0] = p[1]
+
 def p_expression_comment(p):
     'expression : COMMENT'
     p[0] = p[1]
@@ -52,7 +79,7 @@ def p_error(p):
 parser = yacc.yacc()
 
 # Opens a file
-f = open(".\\Task2\\preformatted.txt","r", encoding="utf8")
+f = open(".\\Task2\\testhard.txt","r", encoding="utf8")
 if f.mode == 'r':
 	contents = f.read()
 
@@ -67,6 +94,6 @@ while True:
    break
    
 # Write effects to new file
-g = open(".\\Task2\\formatted.txt","w+")
+g = open(".\\Task2\\testhardresult.txt","w+")
 g.write(result)
 g.close() 
