@@ -1,0 +1,84 @@
+%{
+    #include <math.h>
+    #include <iostream>
+    int yylex (void);
+    void yyerror (std::string);
+    std::string result = "";
+    bool error = false;
+%}
+
+// Tokens received from lexer.l 
+%token NUMBER
+%token LBRACKET
+%token RBRACKET
+%token NEWLINE
+%token DOT
+
+// Bison complains about conflict reduction
+// %left declares token types and says they are left-associative operators
+// %right declares token types and says they are is for right-associative operators
+// %precedence allows to define only precedence and no associativity at all (unary minus is not associative)
+%left DOT
+%left MINUS PLUS
+%left MUL DIV MOD
+%precedence NEG
+%right EXP
+
+%%
+
+input:
+      %empty
+    | input line
+;
+
+line:
+    NEWLINE
+    | exp NEWLINE {
+        if (!error) {
+            std::cout << result << std::endl << "=> " << $1 << std::endl;
+        }
+        error = false;
+        result = "";
+    }
+    | error NEWLINE {
+        std::cerr << "[Err] Syntax Error" << std::endl;
+        error = false;
+        result = "";
+    }
+;
+
+
+exp:
+      NUMBER                {   result += std::to_string($1) + " "; $$ = $1;}
+    | exp DOT exp           {   yyerror ("Please use only integers.");      }
+    | exp PLUS exp          {   result += "+ "; $$ = $1 + $3;               }
+    | exp MINUS exp         {   result += "- "; $$ = $1 - $3;               }
+    | exp MUL exp           {   result += "* "; $$ = $1 * $3;               }
+    | exp DIV exp           {   result += "/ ";
+                                if ($3 != 0) {
+                                    $$ = $1 / $3;
+                                } else {
+                                    yyerror ("You can not divide by zero.");
+                                }                                           } 
+    | exp MOD exp           {   result += "% ";
+                                if ($3 != 0) {
+                                    $$ = ($1 % $3 + $3) % $3;
+                                } else {
+                                    yyerror ("You can not modulo by zero.");
+                                }                                           }
+    | MINUS exp %prec NEG   {   result += "- "; $$ = -$2;                   }
+    | exp EXP exp           {   result += "^ "; $$ = pow ($1, $3);          }
+    | LBRACKET exp RBRACKET {   $$ = $2;                                    }
+;
+
+%%
+
+// Called by yyparse on error
+void yyerror (std::string s){
+    error = true;
+    std::cerr << "[Err] " << s << std::endl;
+}
+
+int main (void){
+  return yyparse ();
+}
