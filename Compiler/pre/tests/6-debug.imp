@@ -1,0 +1,76 @@
+[ a ^ b mod c 
+? 1234567890
+? 1234567890987654321
+? 987654321
+> 674106858
+]
+DECLARE
+    a, b, c, wynik, pot, wybor
+BEGIN
+    READ a;
+    READ b;
+    READ c;
+    wynik ASSIGN 1;
+    pot ASSIGN a MOD c;
+
+    WRITE 11111;
+    WRITE a;
+    WRITE c;
+    WRITE pot;
+    WRITE 11111;
+
+    WHILE b GE 0 DO
+      wybor ASSIGN b MOD 2;
+
+      WRITE 22222;
+      WRITE b;
+      WRITE 2;
+      WRITE wybor;
+      WRITE 22222;
+
+      IF wybor EQ 1 THEN
+        wynik ASSIGN wynik TIMES pot;
+
+        WRITE 33333;
+        WRITE pot;
+        WRITE wynik;
+        WRITE 33333;
+
+        wynik ASSIGN wynik MOD c;
+
+        WRITE 44444;
+        WRITE c;
+        WRITE wynik;
+        WRITE 44444;
+
+      ENDIF
+
+      WRITE 55555;
+      WRITE b;
+      WRITE 55555;
+
+      b ASSIGN b DIV 2;
+
+      WRITE 66666;
+      WRITE b;
+      WRITE 66666;
+      WRITE pot;
+      WRITE 66666;
+
+      pot ASSIGN pot TIMES pot;
+
+      WRITE 77777;
+      WRITE pot;
+      WRITE 77777;
+      WRITE c;
+      WRITE 77777;
+
+      pot ASSIGN pot MOD c;
+
+      WRITE 88888;
+      WRITE pot;
+      WRITE 88888;
+
+    ENDWHILE
+    WRITE wynik;
+END

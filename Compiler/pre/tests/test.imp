@@ -1,0 +1,9 @@
+[ Rozklad liczby na czynniki pierwsze ]
+DECLARE
+    n, m, k
+BEGIN
+    READ n;
+    READ m;
+    k ASSIGN n TIMES m;
+    WRITE k;
+END

@@ -1,0 +1,7 @@
+[ No sweat test ]
+DECLARE
+ a
+BEGIN
+ READ a;
+ WRITE 1;
+END

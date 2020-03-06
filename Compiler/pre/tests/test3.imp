@@ -1,0 +1,9 @@
+BEGIN
+ FOR j FROM 0 TO 5 DO
+    FOR i FROM 0 TO 5 DO
+        IF i GE j THEN
+            WRITE i;
+        ENDIF
+    ENDFOR
+ ENDFOR
+END
